@@ -1,0 +1,14 @@
+{
+  "name": "my_first_packge",
+  "version": "1.0.0",
+  "description": "my first action package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^7.0.2"
+  }
+}
