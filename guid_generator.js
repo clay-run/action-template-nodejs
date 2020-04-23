@@ -1,21 +1,42 @@
-const ActionFunctionReturnType = require('./clay_action_function_type.js')
-const ActionFunctionStatusEnum = require('./clay_action_function_status.js')
+const Clay = require('./clayHelper.js')
+
+const { v4: uuidv4 } = require('uuid')
+
 /*
  *
  * package to get a GUID
  *
  */
-const { v4: uuidv4 } = require('uuid')
+
+const guidGeneratorActionDefinition = {
+  name: "guidgenerator",
+  function: guid_generator_function,
+  documentationUri: "http://github.com/clay-run/actions/mysecondactionguide.md",
+  displayName: "GUID Generator",
+  description: "This action allows the user to generate a GUID",
+  actionGroups: ["Utilities"],
+  inputParameterSchema: [],//we can allow empty array, null, or omitting inputParameterSchema; we'll pass 'undefined' to the action function
+  outputParameterSchema:[
+    {
+      name: "theguid",
+      type: "text"
+    }
+  ],
+  inputSample: null,
+  outputSample: {
+    theguid: "b2f07c7d-29dc-4408-9012-45b8d13206e5"
+  },
+  isPublic: false
+}
+
 
 function guid_generator_function(actionInputs, context){
   const one_guid = uuidv4()
   console.log('debug: inside guid_generator_function with guid: ', one_guid, ' with type: ', typeof one_guid)
-  return new ActionFunctionReturnType(
+  return Clay.success(
     { theguid: one_guid }, //data output field
-    ActionFunctionStatusEnum.SUCCESS, //status field
-    null, //message field
     one_guid //preview field
     )
 }
 
-module.exports = guid_generator_function
+module.exports = guidGeneratorActionDefinition

@@ -1,5 +1,4 @@
-const ActionFunctionReturnType = require('./clay_action_function_type.js')
-const ActionFunctionStatusEnum = require( './clay_action_function_status.js' )
+const Clay = require('./clayHelper.js')
 
 const ActionInternalStatusEnum = {
   //INTERNAL
@@ -107,7 +106,7 @@ async function runLambda(event, context) {
   //double check that the engine provided them correctly
   if(!(event && event.actionName && event.inputs && event.context) ){
     console.log('CRITICAL ERROR: failed to find actionName, inputs, and context in event object:', event)
-    const actionOutputError = new ActionFunctionReturnType(
+    const actionOutputError = new Clay.ActionFunctionReturnType(
       null,
       ActionInternalStatusEnum.ERROR_MISSING_EVENT_INPUT,
       'Internal error. Please contact Clay support.'
@@ -133,7 +132,7 @@ async function runLambda(event, context) {
 
     if(actionFunction == null || typeof actionFunction != 'function') {
       console.log('ERROR: unable to find action function for action name:', event.actionName)
-      const actionOutputError = new ActionFunctionReturnType(
+      const actionOutputError = new Clay.ActionFunctionReturnType(
         null,
         ActionInternalStatusEnum.ERROR_MISSING_ACTION_FUNCTION,
         'The action package does not contain an action function for action name: ' + event.actionName
@@ -147,13 +146,13 @@ async function runLambda(event, context) {
     const actionOutput = await actionFunction(event.inputs, event.context)
     console.log('DEBUG: function execution finished successfully with actionOutput:', actionOutput)
 
-    if(actionOutput.isActionFunctionReturnType() && actionOutput.status in ActionFunctionStatusEnum){
+    if(actionOutput.isActionFunctionReturnType() && actionOutput.status in Clay.ActionFunctionStatusEnum){
       return clayLambdaResponse(actionOutput.getSerializedObject(), 
           'function execution finished successfully', 
           true)
     }
     else{
-      const actionOutputError = new ActionFunctionReturnType(
+      const actionOutputError = new Clay.ActionFunctionReturnType(
         null,
         ActionInternalStatusEnum.ERROR_INVALID_ACTION_OUTPUT_DATA,
         'The action function did not return an object with keys: result, status, and statusMessage.'
@@ -165,7 +164,7 @@ async function runLambda(event, context) {
   }
   catch(err){
     console.log('ERROR: execution error in the action function for action name:', event.actionName, err)
-    const actionOutputError = new ActionFunctionReturnType(
+    const actionOutputError = new Clay.ActionFunctionReturnType(
       null,
       ActionInternalStatusEnum.ERROR_ACTION_RUNTIME_ERROR,
       'The action function threw an exception: ' + JSON.stringify(err)
