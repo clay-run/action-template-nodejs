@@ -2,7 +2,7 @@ const Clay = require('./clayHelper.js')
 
 const mathMaxActionDefinition = {
   name: "mathmax",
-  function: math_max_function,
+  function: mathMaxFunction,
   documentationUri: "http://github.com/clay-run/actions/mythirdactionguide.md",
   displayName: "Math Maximum",
   description: "This action returns the maximum number of an array of numbers",
@@ -30,23 +30,22 @@ const mathMaxActionDefinition = {
   isPublic: false
 }
 
-function math_max_function(actionInputs, context){
-  console.log('debug: inside math_max_function with inputs: ', actionInputs)
+function mathMaxFunction(actionInputs, context){
   const arrayOfNumbers = JSON.parse(actionInputs.numberArray)
-  if(Array.isArray(arrayOfNumbers) ){
-    return new Clay.ActionFunctionReturnType(
-      { theMax: Math.max(...arrayOfNumbers) }, //data output field
-      Clay.ActionFunctionStatusEnum.SUCCESS, //status field
-      "found the max properly", //message field
+
+  if(Array.isArray(arrayOfNumbers)) {
+    return Clay.success(
+      {
+        theMax: Math.max(...arrayOfNumbers)
+      }, //data output field
       Math.max(...arrayOfNumbers) //preview field
       )
   }
   else{
-    return new Clay.ActionFunctionReturnType(
-      null, //data output field
-      Clay.ActionFunctionStatusEnum.ERROR_INVALID_INPUT, //status field
+    return Clay.fail(
+      Clay.status.ERROR_INVALID_INPUT, //status field
       "the numberArray should be an array or parsable into an array, invalid input" //message field
-      ) // preview field omitted
+      )
   }
 }
 
