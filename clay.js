@@ -1,5 +1,6 @@
 const Clay = require('./clayHelper.js')
 
+//TODO: use the ActionFunctionExecutionStatus.js file to generate these internal status enums
 const ActionInternalStatusEnum = {
   //INTERNAL
   //top level PENDING
@@ -96,7 +97,7 @@ async function runLambda(event, context) {
   console.log(event, typeof event)
   // TODO: check security checks needed in lambda 
   //remove scary env variables
-  sanctifyEnvVariables();
+  sanctifyEnvVariables()
   
 
   //the event parameters sent by the engine are: 
@@ -146,7 +147,9 @@ async function runLambda(event, context) {
     const actionOutput = await actionFunction(event.inputs, event.context)
     console.log('DEBUG: function execution finished successfully with actionOutput:', actionOutput)
 
-    if(actionOutput.isActionFunctionReturnType() && actionOutput.status in Clay.ActionFunctionStatusEnum){
+    if(typeof actionOutput.isActionFunctionReturnType == 'function'
+    && actionOutput.isActionFunctionReturnType() 
+    && actionOutput.status in Clay.ActionFunctionStatusEnum){
       return clayLambdaResponse(actionOutput.getSerializedObject(), 
           'function execution finished successfully', 
           true)
@@ -176,4 +179,4 @@ async function runLambda(event, context) {
 
 }
 
-exports.handler = runLambda;
+exports.handler = runLambda

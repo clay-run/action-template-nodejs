@@ -1,31 +1,12 @@
-const Clay = {
-  success: (data, preview) => {
-    new ActionFunctionReturnType(data, ActionFunctionStatusEnum.SUCCESS, message, preview)
-  },
-  fail: (message) => {
-    new ActionFunctionReturnType(null, ActionFunctionStatusEnum.ERROR, message)
-  },
-  ActionFunctionReturnType,
-  ActionFunctionStatusEnum,
-}
-
 const ActionFunctionStatusEnum = {
-  //EXTERNAL
-  //top level SUCCESS
   SUCCESS: "SUCCESS",
-
-  // Can detect this on the engine side just show it differently in the UI. These should be returned from the executor
-  SUCCESS_NO_DATA: "SUCCESS_NO_DATA",
-  //top level ERROR
-  //these errors will populate an error object with an error type and error message
   ERROR: "ERROR",
 
-  // I think these ones we can detect at the backend no need for it to be explicit by the user
+  //The action creator may choose to be more explicit in the error code
   ERROR_MISSING_INPUT: "ERROR_MISSING_INPUT",
   ERROR_INVALID_INPUT: "ERROR_INVALID_INPUT",
   ERROR_MISSING_OUTPUT_DATA: "ERROR_MISSING_OUTPUT_DATA",
   ERROR_INVALID_OUTPUT_DATA: "ERROR_INVALID_OUTPUT_DATA",
-
   ERROR_BAD_REQUEST: "ERROR_BAD_REQUEST",
   ERROR_TIMEOUT: "ERROR_TIMEOUT",
   ERROR_INVALID_CREDENTIALS: "ERROR_INVALID_CREDENTIALS"
@@ -52,6 +33,17 @@ class ActionFunctionReturnType {
       preview: this.preview 
     }
   }
+}
+
+const Clay = {
+  success: (data, preview) => {
+    return new ActionFunctionReturnType(data, ActionFunctionStatusEnum.SUCCESS, null, preview)
+  },
+  fail: (message, errorType = ActionFunctionStatusEnum.ERROR) => {
+    return new ActionFunctionReturnType(null, errorType, message)
+  },
+  ActionFunctionReturnType,
+  ActionFunctionStatusEnum,
 }
 
 module.exports = Clay

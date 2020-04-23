@@ -101,7 +101,7 @@ async function get_last_tweets_for_user(twitterHandle, numberOfTweets){
   for(let it=0; it<numberOfTweets; it++){
     const oneTweet = {
       tweetId: Math.floor(Math.random() * 10000), 
-      tweetText: "Some random tweet message with random number:" + Math.floor(Math.random() * 10), 
+      tweetText: "Some random tweet message from " + twitterHandle + " with random number:" + Math.floor(Math.random() * 10), 
       tweetTimestamp: "3/23/2020", 
       tweetNumberOfRetweets: Math.floor(Math.random() * 100)
     }

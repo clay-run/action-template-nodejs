@@ -4,7 +4,7 @@ const mathMaxActionDefinition = {
   name: "mathmax",
   function: math_max_function,
   documentationUri: "http://github.com/clay-run/actions/mythirdactionguide.md",
-  displayName: "Math Maximum1",
+  displayName: "Math Maximum",
   description: "This action returns the maximum number of an array of numbers",
   actionGroups: ["Utilities", "Mathematics"],
   inputParameterSchema: [
