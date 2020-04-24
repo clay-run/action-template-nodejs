@@ -1,4 +1,4 @@
-const Clay = require('./clayHelper.js')
+const Clay = require('./clay_helper.js')
 
 const mathMaxActionDefinition = {
   name: "mathmax",
@@ -31,7 +31,15 @@ const mathMaxActionDefinition = {
 }
 
 function mathMaxFunction(actionInputs, context){
-  const arrayOfNumbers = JSON.parse(actionInputs.numberArray)
+  let arrayOfNumbers = actionInputs.numberArray
+  if(!Array.isArray(arrayOfNumbers)) {
+    try{
+      arrayOfNumbers = JSON.parse(arrayOfNumbers)
+    }
+    catch(err){
+
+    }
+  }
 
   if(Array.isArray(arrayOfNumbers)) {
     return Clay.success(
@@ -43,8 +51,8 @@ function mathMaxFunction(actionInputs, context){
   }
   else{
     return Clay.fail(
-      Clay.status.ERROR_INVALID_INPUT, //status field
-      "the numberArray should be an array or parsable into an array, invalid input" //message field
+      "the numberArray should be an array or parsable into an array, invalid input", //message field
+      Clay.status.ERROR_INVALID_INPUT, //optional detailed error type
       )
   }
 }

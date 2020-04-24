@@ -1,4 +1,4 @@
-const Clay = require('./clayHelper')
+const Clay = require('./clay_helper.js')
 
 const getLastTweetsActionDefinition = {
   name: "getlasttweets",

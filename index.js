@@ -7,15 +7,14 @@
  * 
  */
 
-const getLastTweetsAction = require("./get_last_tweets.js")
-const guidGeneratorAction = require("./guid_generator.js")
-const mathMaxAction = require("./math_max.js")
+const getTopRedditPostsActionDefinition = require("./get_top_reddit_posts.js")
+const mathMaxActionDefinition = require("./math_max.js")
 
 
 const myActionPackage = {
   name: "myfirstactionpackage5", //to uniquely identify an action pacakge for future updates
   description: "contains various utility actions",
-  actionDefinitions: [getLastTweetsAction, guidGeneratorAction, mathMaxAction],
+  actionDefinitions: [getTopRedditPostsActionDefinition, mathMaxActionDefinition],
 }
 
 module.exports = myActionPackage
