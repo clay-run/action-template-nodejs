@@ -12,7 +12,7 @@ const mathMaxActionDefinition = require("./math_max.js")
 
 
 const myActionPackage = {
-  name: "myfirstactionpackage5", //to uniquely identify an action pacakge for future updates
+  name: "myfirstactionpackage", //to uniquely identify an action pacakge for future updates
   description: "contains various utility actions",
   actionDefinitions: [getTopRedditPostsActionDefinition, mathMaxActionDefinition],
 }

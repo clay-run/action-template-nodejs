@@ -13,12 +13,13 @@ const status = {
 }
 
 const Clay = {
-  success: (data, preview) => {
+  success: (data, textPreview, imagePreview) => {
     return {
       data, 
       status: status.SUCCESS,
       message: null,
-      preview
+      textPreview,
+      imagePreview
     }
   },
   fail: (message, errorType = status.ERROR) => {
@@ -26,7 +27,8 @@ const Clay = {
       data: null, 
       status: errorType,
       message,
-      preview: null
+      textPreview: null,
+      imagePreview: null
     }
   },
   status

@@ -125,13 +125,15 @@ async function getTopRedditPosts(actionInputs, context){
       }
       topPosts.push(oneRedditPost)
     }
-    let previewMessage = "No posts found"
+    let textPreview = "No posts found"
     if(topPosts.length > 0){
-      previewMessage = topPosts.length + " posts found, e.g. " + topPosts[0].title
+      textPreview = topPosts.length + " posts found, e.g. " + topPosts[0].title
     }
+    const imagePreview = "https://logo.clearbit.com/reddit.com?size=80"
     return Clay.success(
       {arrayOfPosts: topPosts},
-      previewMessage
+      textPreview,
+      imagePreview
       )
   }
   catch(err){

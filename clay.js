@@ -106,11 +106,12 @@ function clayLambdaResponse(actionOutput, lambdaExecutionStatusMsg, isLambdaExec
 }
 
 class ActionFunctionReturnType {
-  constructor(outputData, status, message, preview){
+  constructor(outputData, status, message, textPreview, imagePreview){
     this.outputData = outputData
     this.status = status
     this.message = message
-    this.preview = preview
+    this.textPreview = textPreview
+    this.imagePreview = imagePreview
   }
 
   getSerializedObject(){
@@ -118,7 +119,8 @@ class ActionFunctionReturnType {
       outputData: this.outputData,
       status: this.status,
       message: this.message, 
-      preview: this.preview 
+      textPreview: this.textPreview,
+      imagePreview: this.imagePreview
     }
   }
 
@@ -126,7 +128,8 @@ class ActionFunctionReturnType {
     if('data' in actionFunctionReturnObject
       && 'status' in actionFunctionReturnObject
       && 'message' in actionFunctionReturnObject
-      && 'preview' in actionFunctionReturnObject){
+      && 'textPreview' in actionFunctionReturnObject
+      && 'imagePreview' in actionFunctionReturnObject){
         return true
       }
     return false
@@ -198,7 +201,8 @@ async function runLambda(event, context) {
         actionOutput.data,
         actionOutput.status,
         actionOutput.message,
-        actionOutput.preview
+        actionOutput.textPreview,
+        actionOutput.imagePreview
       )
       return clayLambdaResponse(actionOutputSuccess.getSerializedObject(), 
           'function execution finished successfully', 
