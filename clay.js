@@ -106,12 +106,13 @@ function clayLambdaResponse(actionOutput, lambdaExecutionStatusMsg, isLambdaExec
 }
 
 class ActionFunctionReturnType {
-  constructor(outputData, status, message, textPreview, imagePreview){
+  constructor(outputData, status, message, textPreview, imagePreview, logInfo){
     this.outputData = outputData
     this.status = status
     this.message = message
     this.textPreview = textPreview
     this.imagePreview = imagePreview
+    this.logInfo = logInfo
   }
 
   getSerializedObject(){
@@ -120,7 +121,8 @@ class ActionFunctionReturnType {
       status: this.status,
       message: this.message, 
       textPreview: this.textPreview,
-      imagePreview: this.imagePreview
+      imagePreview: this.imagePreview,
+      logInfo: this.logInfo
     }
   }
 
@@ -143,6 +145,13 @@ class ActionFunctionReturnType {
 async function runLambda(event, context) {
   console.log('entered lambda handler function with event type:', typeof event, ' and event:', event)
   console.log('entered lambda handler function with context type:', typeof context, ' and context:', context)
+
+  const logInfo = {
+    groupName: context.logGroupName,
+    streamName: context.logStreamName,
+    requestId: context.awsRequestId
+  }
+
   // TODO: check security checks needed in lambda 
   //remove scary env variables
   sanctifyEnvVariables()
@@ -158,7 +167,10 @@ async function runLambda(event, context) {
     const actionOutputError = new ActionFunctionReturnType(
       null,
       ActionInternalStatusEnum.ERROR_MISSING_EVENT_INPUT,
-      'Internal error. Please contact Clay support.'
+      'Internal error. Please contact Clay support.',
+      null,
+      null,
+      logInfo
     )
     return clayLambdaResponse(actionOutputError.getSerializedObject(), 
       'lambda event did not have action name, inputs, or context parameter', 
@@ -184,7 +196,10 @@ async function runLambda(event, context) {
       const actionOutputError = new ActionFunctionReturnType(
         null,
         ActionInternalStatusEnum.ERROR_MISSING_ACTION_FUNCTION,
-        'The action package does not contain an action function for action name: ' + event.actionName
+        'The action package does not contain an action function for action name: ' + event.actionName,
+        null,
+        null,
+        logInfo
       )
       return clayLambdaResponse(actionOutputError.getSerializedObject(), 
         'index.js does not contain a proper action function for action name: ' + event.actionName, 
@@ -202,7 +217,8 @@ async function runLambda(event, context) {
         actionOutput.status,
         actionOutput.message,
         actionOutput.textPreview,
-        actionOutput.imagePreview
+        actionOutput.imagePreview,
+        logInfo
       )
       return clayLambdaResponse(actionOutputSuccess.getSerializedObject(), 
           'function execution finished successfully', 
@@ -212,7 +228,10 @@ async function runLambda(event, context) {
       const actionOutputError = new ActionFunctionReturnType(
         null,
         ActionInternalStatusEnum.ERROR_INVALID_ACTION_OUTPUT_DATA,
-        'The action function did not return an object with keys: result, status, and statusMessage.'
+        'The action function did not return an object with keys: result, status, and statusMessage.',
+        null,
+        null,
+        logInfo
       )
       return clayLambdaResponse(actionOutputError.getSerializedObject(), 
         'invalid function return object', 
@@ -224,7 +243,10 @@ async function runLambda(event, context) {
     const actionOutputError = new ActionFunctionReturnType(
       null,
       ActionInternalStatusEnum.ERROR_ACTION_RUNTIME_ERROR,
-      'The action function threw an exception: ' + JSON.stringify(err)
+      'The action function threw an exception: ' + JSON.stringify(err),
+      null,
+      null,
+      logInfo
     )
     return clayLambdaResponse(actionOutputError.getSerializedObject(), 
       'execution error in the action function for action name: ' + event.actionName, 
