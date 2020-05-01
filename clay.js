@@ -146,10 +146,13 @@ async function runLambda(event, context) {
   console.log('entered lambda handler function with event type:', typeof event, ' and event:', event)
   console.log('entered lambda handler function with context type:', typeof context, ' and context:', context)
 
+  const logUrl = 'https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#logEventViewer:group='
+  + context.logGroupName + ';stream=' + context.logStreamName +';filter="'+ context.awsRequestId + '"'
   const logInfo = {
     groupName: context.logGroupName,
     streamName: context.logStreamName,
-    requestId: context.awsRequestId
+    requestId: context.awsRequestId,
+    url: encodeURI(logUrl)
   }
 
   // TODO: check security checks needed in lambda 
