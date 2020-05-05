@@ -1,0 +1,36 @@
+//TODO: generate enums from master enum file ActionFunctionExecutionStatus.js
+
+//INTERNAL
+const ActionInternalStatusEnum = {
+  //top level PENDING
+  HAS_NOT_RUN: "HAS_NOT_RUN",
+  //top level RUNNING
+  RUNNING: "RUNNING",
+  LONG_RUNNING: "LONG_RUNNING",
+  //top level QUEUED
+  QUEUED: "QUEUED",
+  //top level ERROR
+  ERROR_INVALID_ACTION_OUTPUT_DATA: "ERROR_INVALID_ACTION_OUTPUT_DATA",
+  ERROR_ACTION_RUNTIME_ERROR: "ERROR_ACTION_RUNTIME_ERROR",
+  ERROR_MISSING_EVENT_INPUT: "ERROR_MISSING_EVENT_INPUT",
+  ERROR_MISSING_ACTION_FUNCTION: "ERROR_MISSING_ACTION_FUNCTION"
+}
+
+const ActionFunctionStatusEnum = {
+  SUCCESS: "SUCCESS",
+  ERROR: "ERROR",
+
+  //The action creator may choose to be more explicit in the error code
+  ERROR_MISSING_INPUT: "ERROR_MISSING_INPUT",
+  ERROR_INVALID_INPUT: "ERROR_INVALID_INPUT",
+  ERROR_MISSING_OUTPUT_DATA: "ERROR_MISSING_OUTPUT_DATA",
+  ERROR_INVALID_OUTPUT_DATA: "ERROR_INVALID_OUTPUT_DATA",
+  ERROR_BAD_REQUEST: "ERROR_BAD_REQUEST",
+  ERROR_TIMEOUT: "ERROR_TIMEOUT",
+  ERROR_INVALID_CREDENTIALS: "ERROR_INVALID_CREDENTIALS"
+}
+
+module.exports = {
+  ClayStatus: ActionFunctionStatusEnum,
+  ClayInternalStatus: ActionInternalStatusEnum
+}
