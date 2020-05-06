@@ -8,7 +8,6 @@
  */
 
 const getTopRedditPostsActionDefinition = require("./get_top_reddit_posts.js")
-const mathMaxActionDefinition = require("./math_max.js")
 
 /*
  *
@@ -17,8 +16,8 @@ const mathMaxActionDefinition = require("./math_max.js")
  */
 const myActionPackage = {
   name: "myfirstactionpackage", //a globally unique name to identify the package for future updates
-  description: "contains various utility actions", //a description of the package's purpose or content
-  actionDefinitions: [getTopRedditPostsActionDefinition, mathMaxActionDefinition], //the action definitions exposed by the action package
+  description: "contains various actions", //a description of the package's purpose or content
+  actionDefinitions: [getTopRedditPostsActionDefinition], //the action definitions exposed by the action package
 }
 
 module.exports = myActionPackage
