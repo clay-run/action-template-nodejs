@@ -1,5 +1,5 @@
 {
-  "name": "my_first_packge",
+  "name": "my_first_package",
   "version": "1.0.0",
   "description": "my first action package",
   "main": "index.js",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@clay-run/clay-action-client": "^1.0.0",
+    "@clay-run/clay-action-client": "^1.0.1",
     "superagent": "^5.2.2"
   }
 }
