@@ -1,4 +1,4 @@
-const { ClayStatus } = require('./../clay-action-module/clay_status.js')
+const { ClayStatus } = require('@clay-run/clay-action-client')
 
 const mathMaxActionDefinition = {
   name: "mathmax",

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "action": "node ./clay-action-module/clay_runner.js"
+    "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js"
   },
   "author": "",
   "license": "ISC",
