@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@clay-run/clay-action-client": "^1.0.1",
+    "@clay-run/clay-action-client": "^1.0.2",
     "superagent": "^5.2.2"
   }
 }

@@ -82,22 +82,13 @@ const getTopRedditPostsActionDefinition = {
       {
         bucket: ['USER'],
         limit: 4
-      },
-      {
-        bucket: ['USER', 'PUBLIC_AUTH_KEY'],
-        limit: 2
-      },
+      }
     ],
     timeWindow: [
       {
-        bucket: ['PUBLIC_AUTH_KEY'],
-        limit: 15,
-        durationMs: 60000000
-      },
-      {
         bucket: ['PRIVATE_AUTH_KEY'],
         limit: 15,
-        durationMs: 60000000
+        durationMs: 60000
       }
     ]
   }
@@ -109,9 +100,9 @@ const getTopRedditPostsActionDefinition = {
  * -the function should always allow 2 parameters, the action inputs and the context
  * -the action inputs will match the action's inputParameterSchema
  * -the context exposes various utility parameters for the action function:
- * --context.log(message) allows the user to log messages and make them available on Clay
- * --context.success(data, textPreview, imagePreview) generates a return object indicating a success for the action function execution
- * --context.fail(message, errorType = ClayStatus.ERROR) generates a return object indicating a failure of the action function execution
+ * --context.log(...logs) allows the user to log messages and make them available on Clay
+ * --context.success({data, textPreview, imagePreview}) generates a return object indicating a success for the action function execution
+ * --context.fail({message, errorType = context.status.ERROR}) generates a return object indicating a failure of the action function execution
  * --context.status contains additional status codes useful to better describe the error type - can also be imported as ClayStatus
  * 
  */
@@ -124,6 +115,11 @@ async function getTopRedditPosts(actionInputs, context){
     numberOfPosts = actionInputs.numberOfPosts
   }
   const oneSubredditName = actionInputs.subredditName
+  if(typeof oneSubredditName != 'string' || oneSubredditName.length === 0){
+    return context.fail({
+      message: 'invalid subredditName parameter:' + oneSubredditName
+      })
+  }
 
   const redditResponse = await superagent.get('https://www.reddit.com/r/' + oneSubredditName + '/top.json?limit=' + numberOfPosts)
 
@@ -145,16 +141,16 @@ async function getTopRedditPosts(actionInputs, context){
       textPreview = topPosts.length + " posts found, e.g. " + topPosts[0].title
     }
     const imagePreview = "https://logo.clearbit.com/reddit.com?size=80"
-    return context.success(
-      {arrayOfPosts: topPosts},
+    return context.success({
+      data: {arrayOfPosts: topPosts},
       textPreview,
       imagePreview
-      )
+    })
   }
   catch(err){
-    return context.fail(
-      'call to reddit failed with error:' + JSON.stringify(err)
-      )
+    return context.fail({
+      message: 'call to reddit failed with error:' + JSON.stringify(err)
+    })
   }
 }
 

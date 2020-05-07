@@ -4,9 +4,17 @@
  * the object should match the action definition's inputParameterSchema
  * 
  */
-const actionInputs = {
-  subredditName: "cats",
-  numberOfPosts: 3
-}
 
-module.exports = actionInputs
+module.exports = {
+  goodSample: {
+    subredditName: "cats",
+    numberOfPosts: 3
+  },
+  badSample: {
+    wrongFieldName: "badValue",
+    numberOfPosts: "wrongType"
+  },
+  anotherSample: {
+    subredditName: "dogs"
+  }
+}
