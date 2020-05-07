@@ -9,13 +9,13 @@ const getTopRedditPostsActionDefinition = {
   name: "gettopredditposts", //unique action name across the entire action package
   function: getTopRedditPosts, //the action function to execute
   documentationUri: "http://github.com/clay-run/actions/myfirstactionguide.md", //optional - link to documentation
-  displayName: "Get top reddit posts", //the action name to be displayed on Clay
+  iconUri: "https://logo.clearbit.com/reddit.com?size=80",
+  displayName: "Get top reddit posts v507 tres", //the action name to be displayed on Clay
   description: "This action allows to get the top posts of a specific subreddit", //the action description to be displayed on Clay
   actionGroups: ["Social Media", "Reddit"], //INTERNAL ONLY - folders that will include the public action on Clay
   authentications: [ //optional - authentication methods that can be used by the action function
     {
-      provider: "RedditOAuth",
-      scope: "read"
+      provider: "api_key",
     }
   ],
   inputParameterSchema: [ //the action function expects an object with the following parameters
