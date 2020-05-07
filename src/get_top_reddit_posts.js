@@ -149,12 +149,12 @@ async function getTopRedditPosts(actionInputs, context) { // <--- All Actions ta
     /**
      * Errors that reach this block are not logged by default because context.fail will treat them as properly handled errors.
      *
-     * If you want visibility to errors that occur here, you should use context.log below.
+     * If you want visibility on Clay to errors that occur here, you should use context.log below.
      */
     //  context.log(err.message)
     return context.fail({
       // ^^^ `context` provides a `.fail` handler for error handling
-      message: 'Call to reddit failed with error:' + JSON.stringify(err)
+      message: `Call to reddit failed with error: ${err.message}`
     })
   }
 }
