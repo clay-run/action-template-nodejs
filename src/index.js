@@ -1,23 +1,22 @@
 /*
  *
- * This sample action package illustrates various rules and principles for action package creation
+ * This is where you define your Action Package.
  *
- * An Action Package contains one or more Action Definitions
+ * An Action Package contains one or more Action Definitions.
  *
- * 
+ * Be sure to add any actions you want included in your Action Package to the `actionDefinitions` array.
+ *
  */
 
 const getTopRedditPostsActionDefinition = require("./get_top_reddit_posts.js")
 
 /*
- *
- * The action definition object to be exported
- * 
+ * The Action Package definition
  */
-const myActionPackage = {
-  name: "myfirstactionpackage", //a globally unique name to identify the package for future updates
-  description: "contains various actions", //a description of the package's purpose or content
-  actionDefinitions: [getTopRedditPostsActionDefinition], //the action definitions exposed by the action package
+const RedditActionPackage = {
+  name: "redditactionpackage", // a globally unique name to identify the package
+  description: "Actions to help search and read posts on Reddit", // a description of the package's purpose or content
+  actionDefinitions: [getTopRedditPostsActionDefinition], // the actions included in the action package
 }
 
-module.exports = myActionPackage
+module.exports = RedditActionPackage
