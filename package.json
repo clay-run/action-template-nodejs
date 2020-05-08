@@ -1,16 +1,16 @@
 {
-  "name": "my_first_package",
+  "name": "action_package_template",
   "version": "1.0.0",
-  "description": "my first action package",
+  "description": "action package template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@clay-run/clay-action-client": "^1.0.2",
+    "@clay-run/clay-action-client": "^1.0.3",
     "superagent": "^5.2.2"
   }
 }

@@ -8,7 +8,7 @@
  *
  */
 
-const getTopRedditPostsActionDefinition = require("./get_top_reddit_posts.js")
+const getTopRedditPostsActionDefinition = require("./get_top_reddit_posts_action_definition.js")
 
 /*
  * The Action Package definition
