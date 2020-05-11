@@ -6,16 +6,16 @@ const getTopRedditPostsActionFunction = require('./get_top_reddit_posts_action_f
 const getTopRedditPostsActionDefinition = {
   name: "gettopredditposts", // unique action name across the entire action package
   function: getTopRedditPostsActionFunction, // the action function to execute
-  documentationUri: "http://github.com/clay-run/actions/myfirstactionguide.md", // optional - link to documentation
-  iconUri: "https://logo.clearbit.com/reddit.com?size=80",
+  documentationUri: "https://github.com/clay-run/action-template-nodejs/blob/master/README.md", // optional - link to documentation
+  iconUri: "https://logo.clearbit.com/reddit.com?size=80", // optional - icon to be displayed on Clay
   displayName: "Get top reddit posts", // the action name to be displayed on Clay
   description: "This action allows to get the top posts of a specific subreddit", // the action description to be displayed on Clay
-  actionGroups: ["Social Media", "Reddit"], // INTERNAL ONLY - folders that will include the public action on Clay
-  authentications: [ // optional - authentication methods that can be used by the action function
-    {
-      provider: "api_key",
-    }
-  ],
+  //actionGroups: ["Social Media", "Reddit"], // INTERNAL ONLY - folders that will include the public action on Clay
+  //authentications: [ // optional - authentication methods that can be used by the action function
+  //  {
+  //    provider: "api_key",
+  //  }
+  //],
   inputParameterSchema: [ // the action function expects an object with the following parameters
     {
       name: "subredditName", // the parameter key in the object
@@ -32,8 +32,8 @@ const getTopRedditPostsActionDefinition = {
       description: "The number of posts to fetch"
     }
   ],
-  supportsBatching: true, // optional - if allowed, the action function will receive a flag to indicate that it is running in batch mode
-  maximumBatchSize: 100, // optional - the maximum number of input objects to be received if batch mode is enabled
+  //supportsBatching: true, // optional - if allowed, the action function will receive a flag to indicate that it is running in batch mode
+  //maximumBatchSize: 100, // optional - the maximum number of input objects to be received if batch mode is enabled
   outputParameterSchema: [ // the action function must return an object with the following parameters
     {
       name: "arrayOfPosts",
@@ -64,25 +64,25 @@ const getTopRedditPostsActionDefinition = {
       }
     ]
   },
-  pricing: { // INTERNAL ONLY - pricing rules for the action function
-    requiresPayment: true,
-    chargedById: "a1b2c3d4",
-    paymentPlan: "subscription",
-    trialRuns: 1000,
-    pricePerRun: 5 // integer in one hundredth of a cent
-  },
-  restrictionFlags: { // INTERNAL ONLY - restriction rules related to the action function
-    isExportable: true //optional - prevents the action function output to be exported from Clay
-  },
-  isPublic: false, // INTERNAL ONLY - allows Clay admins to make the action function public
-  rateLimitRules: { // optional - allows rate limiting rules to be defined in order to throttle the execution of the action function
-    concurrency: [
-      {
-        bucket: ['USER'],
-        limit: 4
-      }
-    ]
-  }
+  //pricing: { // INTERNAL ONLY - pricing rules for the action function
+  //  requiresPayment: true,
+  //  chargedById: "a1b2c3d4",
+  //  paymentPlan: "subscription",
+  //  trialRuns: 1000,
+  //  pricePerRun: 5 // integer in one hundredth of a cent
+  //},
+  //restrictionFlags: { // INTERNAL ONLY - restriction rules related to the action function
+  //  isExportable: true //optional - prevents the action function output to be exported from Clay
+  //},
+  //isPublic: false, // INTERNAL ONLY - allows Clay admins to make the action function public
+  //rateLimitRules: { // optional - allows rate limiting rules to be defined in order to throttle the execution of the action function
+  //  concurrency: [
+  //    {
+  //      bucket: ['USER'],
+  //      limit: 4
+  //    }
+  //  ]
+  //}
 }
 
 module.exports = getTopRedditPostsActionDefinition
