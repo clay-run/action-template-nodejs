@@ -13,12 +13,12 @@ async function getTopRedditPostsActionFunction(actionInputs, context) { // <--- 
   // ^^^ the `context` object exposes a .log method to help you see logs inside Clay
 
   let numberOfPosts = 10
-  if (actionInputs.numberOfPosts){
+  if(actionInputs.numberOfPosts){
     numberOfPosts = actionInputs.numberOfPosts
   }
 
   const oneSubredditName = actionInputs.subredditName
-  if (typeof oneSubredditName != 'string' || oneSubredditName.length === 0){
+  if(typeof oneSubredditName != 'string' || oneSubredditName.length === 0){
     return context.fail({
       message: `invalid subredditName parameter:${oneSubredditName}`
     })
@@ -28,7 +28,7 @@ async function getTopRedditPostsActionFunction(actionInputs, context) { // <--- 
 
   try {
     const topPosts = []
-    for (const oneRedditPostData of redditResponse.body.data.children){
+    for(const oneRedditPostData of redditResponse.body.data.children){
       const oneRedditPost = {
         title: oneRedditPostData.data.title,
         id: oneRedditPostData.data.id,
@@ -42,19 +42,19 @@ async function getTopRedditPostsActionFunction(actionInputs, context) { // <--- 
 
     let textPreview = "No posts found"
 
-    if (topPosts.length > 0){
+    if(topPosts.length > 0){
       textPreview = `${topPosts.length} posts found, e.g. ${topPosts[0].title}`
     }
 
     const imagePreview = "https://logo.clearbit.com/reddit.com?size=80"
 
-    return context.success({
+    context.success({
       // ^^^ `context` provides a `.success` handler structuring the response to your user
       data: {arrayOfPosts: topPosts},
       textPreview,
       imagePreview
     })
-  } catch(err){
+  } catch (err){
     /**
      * Errors that reach this block are not logged by default because context.fail will treat them as properly handled errors.
      *

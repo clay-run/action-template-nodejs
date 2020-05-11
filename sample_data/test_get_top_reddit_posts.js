@@ -2,7 +2,7 @@
  *
  * this is a sample test file for an action
  * the object should match the action definition's inputParameterSchema
- * 
+ *
  */
 
 module.exports = {
