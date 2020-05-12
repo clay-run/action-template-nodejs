@@ -2,7 +2,7 @@
   "name": "action_package_template",
   "version": "1.0.0",
   "description": "action package template",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js"
@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@clay-run/clay-action-client": "latest",
-    "superagent": "^5.2.2"
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0"
   }
 }
