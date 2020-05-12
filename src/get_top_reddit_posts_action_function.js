@@ -48,7 +48,7 @@ async function getTopRedditPostsActionFunction(actionInputs, context) { // <--- 
 
     const imagePreview = "https://logo.clearbit.com/reddit.com?size=80"
 
-    context.success({
+    return context.success({
       // ^^^ `context` provides a `.success` handler structuring the response to your user
       data: {arrayOfPosts: topPosts},
       textPreview,

@@ -1,0 +1,18 @@
+name: Action Deployment Workflow
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  action-deployment-job:
+    name: Action Package Deployment Job
+    runs-on: ubuntu-16.04
+    steps:
+      - name: checkout the repo
+        uses: actions/checkout@v2
+      - name: setup and deployment of action package
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: ${GITHUB_WORKSPACE}/.github/scripts/setup_and_deploy.sh
+
+
