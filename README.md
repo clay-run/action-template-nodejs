@@ -1,4 +1,4 @@
-# Clay Action Package Template
+# Clay Action Package Template 
 
 This README describes:
 1. How to create an action package
