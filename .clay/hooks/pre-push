@@ -8,7 +8,7 @@ do
     echo "Starting deployment"
 
     API_TOKEN=$(<~/.base/base.json)
-    API_TOKEN=$API_TOKEN node ./.git/scripts/deploy_action_package.js
+    API_TOKEN=$API_TOKEN node ./.clay/scripts/deploy_action_package.js
     NODE_RC=$?
 
     if [ $NODE_RC != 0 ]; then
