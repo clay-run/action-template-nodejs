@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "git config core.hooksPath ./.clay/hooks",
     "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@clay-run/clay-action-client": "latest",
+    "archiver": "^4.0.1",
     "superagent": "^5.2.2"
   }
 }

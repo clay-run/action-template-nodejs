@@ -1,0 +1,24 @@
+#!/bin/bash
+
+while read local_ref local_sha remote_ref remote_sha
+do
+	if [ $remote_ref == "refs/heads/master" ]; then
+    echo "Push to master head detected; deploying action package to Clay"
+
+    echo "Starting deployment"
+
+    API_TOKEN=$(<~/.base/base.json)
+    API_TOKEN=$API_TOKEN node ./.git/scripts/deploy_action_package.js
+    NODE_RC=$?
+
+    if [ $NODE_RC != 0 ]; then
+      echo "Deployment failed, interrupting git push"
+      exit $NODE_RC
+    fi
+
+    echo "Deployment complete"
+    exit $NODE_RC
+	fi
+done
+
+exit 0
