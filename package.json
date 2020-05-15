@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "git config core.hooksPath ./node_modules/@clay-run/clay-action-client/hooks",
-    "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js"
+    "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js",
+    "deploy": "API_TOKEN=`cat ~/.base/base.json` node ./node_modules/@clay-run/clay-action-client/clay_deploy.js"
   },
   "author": "",
   "license": "MIT",
