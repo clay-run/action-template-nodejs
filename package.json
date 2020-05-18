@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "action": "node ./node_modules/@clay-run/clay-action-client/clay_runner.js",
-    "deploy": "API_TOKEN='YOUR_API_TOKEN' ACTION_PACKAGE_ID='YOUR_ACTION_PACKAGE_ID' node ./node_modules/@clay-run/clay-action-client/clay_deploy.js"
+    "action": "./node_modules/@clay-run/clay-action-client/clay_runner.js",
+    "deploy": "CLAY_API_TOKEN='YOUR_API_TOKEN' CLAY_ACTION_PACKAGE_ID='YOUR_ACTION_PACKAGE_ID' ./node_modules/@clay-run/clay-action-client/clay_deploy.js"
   },
   "author": "",
   "license": "MIT",
