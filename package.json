@@ -12,7 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "@clay-run/clay-action-client": "latest",
-    "archiver": "^4.0.1",
     "superagent": "^5.2.2"
   }
 }
