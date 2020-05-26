@@ -6,7 +6,7 @@ const sendUserSignupSlackCard = require('./send_user_signup_slack_card_function'
 const sendUserSignupSlackCardDefinition = {
   name: "send-user-signup-slack-card",
   function: sendUserSignupSlackCard,
-  iconUri: "https://logo.clearbit.com/reddit.com?size=80",
+  iconUri: "https://logo.clearbit.com/slack.com?size=80",
   displayName: "Send User Signup Slack Card",
   description: "Send a Slack Card with Data about a Person and Associated Company",
   actionGroups: ["Enrichment", "Slack"],
