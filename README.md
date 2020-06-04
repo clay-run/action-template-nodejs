@@ -115,15 +115,15 @@ context.status.ERROR_INVALID_CREDENTIALS
 ### Running your actions locally during development
 
 In order to test your actions, you can run the following command:
-`npm run action your-action-name path/to/input/file`
+`yarn run action your-action-name path/to/input/file`
 or
-`npm run action your-action-name your-data-sample-name path/to/input/file`
+`yarn run action your-action-name your-data-sample-name path/to/input/file`
 
 - where `your-action-name` is the action name as defined in the action definition
 - where `your-data-sample-name` is the key in the data sample object that you want to use as inputs
 - where `path/to/input/file` is a sample input data for the action
 - make sure to first install the dependencies before running the command, including the clay action client by running `npm install`
 
-e.g. `npm run action gettopredditposts sample_data/test_get_top_reddit_posts.js`
+e.g. `yarn run action gettopredditposts sample_data/test_get_top_reddit_posts.js`
 
 The directory `sample_data/` contains a sample input file to illustrate its usage.
