@@ -73,22 +73,157 @@ Open up `src/definition.js` to start defining your action.
 Please see the example Action in `src/get_top_reddit_posts.js` for the structure of an action.
 
 ### Step 3: Define Your Input
-Actions have input and output defined by the author.
+> Input and Output are defined by you, the Action author. Input uses the `inputParameterSchema` property in in the Action definition to declare the shape and type of data accepted by the Action.
 
-Input and output parameters can have the following types:
+Open `definition.js` and find:
+1. `inputSample`
+2. `inputParameterSchema`
+
+The `inputSample` is an optional helper that's used to suggest sample data to the user of the Action.
+
+The `inputParameterSchema` defines the type of data that your Action can accept. The Clay UI will enforce these types when users choose your action, so choose them carefully.
+
+*Both input and output* parameter schemas use the same syntax and support the following types:
   - boolean
   - number
   - text
   - array
   - object
 
-Open `definition.js` and define:
-1. `inputParameterSchema`
-2. `inputSample`
+Input and output parameter schemas are declared as an array of objects. Each object declares the `name` (variable name), `displayName` (nicely formatted name for the UI), and `type` (data type, like 'text') of each parameter.
 
-The `inputParameterSchema` defines the type of data that your Action can accept. The Clay UI will enforce these types when users choose your action, so choose them carefully.
+For example, an action that takes an `email` parameter as input would declare an input parameter schema as follows:
 
-The `inputSample` is an optional helper that's used to suggest sample data to the user of the Action.
+```js
+// start of definition.js...
+  inputParameterSchema: [
+    {
+      name: 'email',
+      displayName: 'Email',
+      type: 'text'
+    }
+  ]
+// ... rest of definition.js
+```
+
+> If the email were *output* rather than input, this schema would look exactly the same -- except it would be referenced on the `outputParameterSchema` property in `definition.js`.
+
+In general, input (and output) parameter schemas follow a common format:
+
+```js
+{
+  name: 'variableNameGoesHere',
+  displayName: 'A Nicely Formatted Name for the UI Goes here',
+  type: 'data-type-goes-here' // data type goes here
+}
+```
+
+#### Nested Parameter Schemas
+
+Input and output schemas can be of any length and can contain nested data types like `array`s and `object`s.
+
+Here's an example of nested data that could be the input or output of an action.
+
+```js
+{
+  id: 12345,
+  name: {
+    fullName: 'Joe Smith',
+    givenName: 'Joe',
+    familyName: 'Smith'
+  }
+}
+```
+
+The matching parameter schema for this data would look like this:
+
+```js
+inputParameterSchema: [
+  {
+    name: 'id',
+    displayName: 'Id',
+    type: 'text'
+  },
+  {
+    name: 'name',
+    displayName: 'Name',
+    type: 'object',
+    //      ^^^ This indicates that we will declare a nested schema using the `schema` key below.
+    schema: [
+      // This schema refers to the objects nested inside `name`
+      {
+        name: 'fullName',
+        displayName: 'Full Name',
+        type: 'text'
+      },
+      {
+        name: 'givenName',
+        displayName: 'Given Name',
+        type: 'text'
+      },
+      {
+        name: 'familyName',
+        displayName: 'Family Name',
+        type: 'text'
+      }
+    ]
+  }
+]
+```
+
+You can declare an array in a parameter schema as well.
+
+```js
+// Sample input/output data: an ARRAY of OBJECTS.
+{
+  arrayOfArticles: [
+    {
+      title: 'The 10 Greatest Dogs of All Time',
+      author: 'Rover Wagsworth',
+      numberOfComments: 25,
+      URL: 'https://reddit.com/10-greatest-dogs'
+    },
+    {
+      title: 'Questioning The Human Love of Dogs',
+      author: 'Meowster McLitterbox',
+      URL: 'https://reddit.com/questioning-humans-dogs'
+    }
+  ]
+}
+
+// Matching input/output parameter schema ... as defined in definition.js file
+
+inputParameterSchema: [
+  {
+    name: "arrayOfArticles",
+    type: "array",
+    // Schema of the object(s) found inside the array:
+    schema: [
+      {
+        name: 'title',
+        displayName: 'Title',
+        type: 'text'
+      },
+      {
+        name: 'author',
+        displayName: 'Author',
+        type: 'text'
+      },
+      {
+        name: 'numberOfComments',
+        displayName: 'Number of Upvotes',
+        type: 'number'
+      },
+      {
+        name: 'URL',
+        displayName: 'URL',
+        type: 'text'
+      }
+    ]
+  }
+]
+```
+
 
 ### Step 4: Write Your Action
 The Action definition points to a function that carries out the tasks of your action.
@@ -159,7 +294,6 @@ Run the following command to see a sample test using the boilerplate: `yarn run 
 > A good test file should cover common error states, like invalid input, bad credentials, or a failed HTTP request.
 
 ### Step 6: Generate an Output Sample and Schema
-
 To complete your Action, you need to create an output sample and output parameter schema file.
 
 These are similar to the input sample and input parameter schema file discussed in step 3.
