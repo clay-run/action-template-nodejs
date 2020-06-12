@@ -289,7 +289,7 @@ or
 - where `your_data_sample_name` is the key in the data sample that you want to use as an input. For example, we could specify `goodSample` from the file above
 - where `path/to/test/file` is the path to the test file itself
 
-Run the following command to see a sample test using the boilerplate: `yarn run action gettopredditposts ./test_get_top_reddit_posts.js`
+Run the following command to see a sample test using the boilerplate: `yarn run action gettopredditposts src/get_top_reddit_posts/test_get_top_reddit_posts.js`
 
 > A good test file should cover common error states, like invalid input, bad credentials, or a failed HTTP request.
 
@@ -325,6 +325,14 @@ If you want to deploy without merging, you can deploy to each stage using
 yarn run deploy:local
 yarn run deploy:staging
 yarn run deploy // production by default
+```
+You will get an error if you are not on the `master` branch or if you have uncommitted changes. 
+If you wish to force the deployment, add `forcedeploy` to the command.
+
+```
+yarn run deploy:local forcedeploy
+yarn run deploy:staging forcedeploy
+yarn run deploy forcedeploy // production by default
 ```
 
 Deployment only works if you're logged into Clay from your command line. If you can't deploy, log in by stage with:
