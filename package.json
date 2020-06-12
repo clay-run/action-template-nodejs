@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "node -e 'if(!/yarn\\.js$/.test(process.env.npm_execpath))throw new Error(\"Please use yarn instead\")'",
+    "postinstall": "git config core.hooksPath ./node_modules/@clay-run/clay-action-client/hooks",
     "action": "./node_modules/@clay-run/clay-action-client/clay_runner.js",
     "deploy:local": "ENV=local ./node_modules/@clay-run/clay-action-client/clay_deploy.js",
     "deploy:staging": "ENV=staging ./node_modules/@clay-run/clay-action-client/clay_deploy.js",

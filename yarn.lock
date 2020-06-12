@@ -3,11 +3,12 @@
 
 
 "@clay-run/clay-action-client@latest":
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/@clay-run/clay-action-client/-/clay-action-client-1.0.19.tgz#17957d9a188db18b31496ffb09a553ec36df4872"
-  integrity sha512-AFwRrBOY71c+qNHhD0VcHGuEoNsae1rZUtIu8DV2abH/dJqc1+ytVMKSyIoCJZgUfEO1nwJrcsIoB+dqOqi2ug==
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@clay-run/clay-action-client/-/clay-action-client-1.0.23.tgz#e2eb27617795c762b1689834a090885eb5a48081"
+  integrity sha512-Zy7VxJsqv8tP5pfROVFqnvcKgWxD+j9oUskK0ufK2qHg7sSxdWGGkFXuP5UDubGhiTHPxlVzrz+d/9TQQMUJRw==
   dependencies:
     archiver "^4.0.1"
+    chalk "^4.0.0"
     clui "^0.3.6"
     email-validator "^2.0.4"
     inquirer "^7.1.0"
@@ -123,6 +124,14 @@ chalk@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
   integrity sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
+chalk@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
+  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
