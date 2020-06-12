@@ -8,9 +8,9 @@
     "preinstall": "node -e 'if(!/yarn\\.js$/.test(process.env.npm_execpath))throw new Error(\"Please use yarn instead\")'",
     "postinstall": "git config core.hooksPath ./node_modules/@clay-run/clay-action-client/hooks",
     "action": "./node_modules/@clay-run/clay-action-client/clay_runner.js",
-    "deploy:local": "ENV=local ./node_modules/@clay-run/clay-action-client/clay_deploy.js",
-    "deploy:staging": "ENV=staging ./node_modules/@clay-run/clay-action-client/clay_deploy.js",
-    "deploy": "./node_modules/@clay-run/clay-action-client/clay_deploy.js",
+    "deploy:local": "GIT_DIFF=$(git diff-index --name-only HEAD) GIT_BRANCH=$(git symbolic-ref -q HEAD) ENV=local ./node_modules/@clay-run/clay-action-client/clay_deploy.js",
+    "deploy:staging": "GIT_DIFF=$(git diff-index --name-only HEAD) GIT_BRANCH=$(git symbolic-ref -q HEAD) ENV=staging ./node_modules/@clay-run/clay-action-client/clay_deploy.js",
+    "deploy": "GIT_DIFF=$(git diff-index --name-only HEAD) GIT_BRANCH=$(git symbolic-ref -q HEAD) ./node_modules/@clay-run/clay-action-client/clay_deploy.js",
     "login:local": "ENV=local ./node_modules/@clay-run/clay-action-client/clay_login.js",
     "login:staging": "ENV=staging ./node_modules/@clay-run/clay-action-client/clay_login.js",
     "login": "./node_modules/@clay-run/clay-action-client/clay_login.js"
