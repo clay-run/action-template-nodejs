@@ -326,13 +326,21 @@ yarn run deploy:local
 yarn run deploy:staging
 yarn run deploy // production by default
 ```
-You will get an error if you are not on the `master` branch or if you have uncommitted changes. 
-If you wish to force the deployment, add `forcedeploy` to the command.
+You will get an error if you are not on the `master` branch or if you have uncommitted changes for production deployments. 
+If you wish to force the deployment, add `-- --force` to the command.
 
 ```
-yarn run deploy:local forcedeploy
-yarn run deploy:staging forcedeploy
-yarn run deploy forcedeploy // production by default
+yarn run deploy -- --force // production by default
+```
+
+The deployment system supports major and minor versions.
+By default, each new deployment increments the minor version, resulting in an automatic update for all tables using your actions.
+If you do not want to benefit from this automatic update, typically because the new release is backwards incompatible,
+you can specify that you want to increment the major version of the entire action package or of individual actions, by using the command:
+
+```
+yarn run deploy -- --major // increments the major version for the entire action package
+yarn run deploy -- --major myfirstaction mysecondaction // increments the major version for actions named myfirstaction and mysecondaction
 ```
 
 Deployment only works if you're logged into Clay from your command line. If you can't deploy, log in by stage with:
