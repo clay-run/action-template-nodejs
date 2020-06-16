@@ -87,6 +87,7 @@ The `inputParameterSchema` defines the type of data that your Action can accept.
   - boolean
   - number
   - text
+  - select
   - array
   - object
 
@@ -319,18 +320,16 @@ The contents of these two files are automatically included in the `outputSample`
 
 If you're ready to go live with your Action, just merge your work to the `master` branch of your GitHub repository.
 
-If you want to deploy without merging, you can deploy to each stage using
+If you want to deploy without merging, you can deploy using
 
 ```
-yarn run deploy:local
-yarn run deploy:staging
-yarn run deploy // production by default
+yarn run deploy
 ```
-You will get an error if you are not on the `master` branch or if you have uncommitted changes for production deployments. 
+You will get an error if you are not on the `master` branch or if you have uncommitted changes. 
 If you wish to force the deployment, add `-- --force` to the command.
 
 ```
-yarn run deploy -- --force // production by default
+yarn run deploy -- --force
 ```
 
 The deployment system supports major and minor versions.
@@ -343,12 +342,10 @@ yarn run deploy -- --major // increments the major version for the entire action
 yarn run deploy -- --major myfirstaction mysecondaction // increments the major version for actions named myfirstaction and mysecondaction
 ```
 
-Deployment only works if you're logged into Clay from your command line. If you can't deploy, log in by stage with:
+Deployment only works if you're logged into Clay from your command line. If you can't deploy, log in with:
 
 ```
-yarn run login:local
-yarn run login:staging
-yarn run login // production by default
+yarn run login
 ```
 
 ---
