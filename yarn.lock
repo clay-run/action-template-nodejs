@@ -3,9 +3,9 @@
 
 
 "@clay-run/clay-action-client@latest":
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/@clay-run/clay-action-client/-/clay-action-client-1.0.26.tgz#2dd146a8d6269eff4c63a8849b8f5007be31fe9c"
-  integrity sha512-s63LpaAUJ56yqvp7mNhhSAjBnGUKIWvf+wsDeMgbVYrJPVpWMAr0/WXQXn/9jeHnhahXuJo7GvTuMMKYuDZn7g==
+  version "1.0.27"
+  resolved "https://registry.yarnpkg.com/@clay-run/clay-action-client/-/clay-action-client-1.0.27.tgz#4ddc8f6d343989b4b6827b5bfb7e4b6d625819bd"
+  integrity sha512-TIopnZIJP+N8Z01qCtdEfIWe+1W6494qn1tp5xnh1E41+vxR8Dh+Qg6vpC8sca3ooRDdPiPAl9lzZT03LRvJFA==
   dependencies:
     archiver "^4.0.1"
     chalk "^4.0.0"
