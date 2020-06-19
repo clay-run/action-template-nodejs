@@ -366,6 +366,17 @@ The rate limit rule is an object that specifies:
 
 These rules are defined in the `definition.js` file for any Action that needs rate limiting.
 
+`bucket` describes the value that will be used to track the rate limit. You can define any number of buckets for any rule.
+
+Valid buckets are:
+- USER
+- GLOBAL
+- PRIVATE_AUTH_KEY
+
+USER means the rule applies to the Clay user i.e. a Clay user can only make 4 requests per minute to an API.
+GLOBAL means the rule applies across the Clay platform i.e. ALL users can only make 50 requests per minute COMBINED.
+PRIVATE_AUTH_KEY means the rule applies to the API key used to authenticate the action i.e. this API key can only make 10 concurrent requests across the Clay platform.
+
 ### Rate Limits: Concurrency
 Concurrency rules define the maximum number of concurrent (parallel) requests.
 
