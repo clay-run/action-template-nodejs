@@ -411,4 +411,6 @@ Time window rules define the maximum number of requests in a time window.
 
 ### Authentication Overview
 
-Authentication stuff goes here TBD
+Authentication tokens are passed in on the `context.auth` object. If no authentication has taken place, the `context.auth` object does not exist. Code defensively to handle this case.
+
+More authentication stuff goes here TBD
