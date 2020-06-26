@@ -18,7 +18,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@clay-run/clay-action-client": "latest",
+    "@clay-run/clay-action-client": "1.x",
     "superagent": "^5.2.2"
   }
 }
