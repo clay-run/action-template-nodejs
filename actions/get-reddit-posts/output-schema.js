@@ -1,4 +1,6 @@
-module.exports = [ // the action function must return an object with the following parameters
+// These are used to help Clay's interface provide ways to extract data from the output of this action into the table
+
+module.exports = [ 
   {
     name: "arrayOfPosts",
     type: "array",
