@@ -14,7 +14,7 @@ This README describes:
 1. How to write an Action Package
 3. How to test an Action Package
 4. How to deploy an Action Package
-2. Optional, advanced features available to Actions, such as authentication and rate-limiting
+2. Optional, advanced features available to Actions, such as authentication, retries, and rate-limiting
 
 ## Project Structure
 
@@ -414,3 +414,14 @@ Time window rules define the maximum number of requests in a time window.
 Authentication tokens are passed in on the `context.auth` object. If no authentication has taken place, the `context.auth` object does not exist. Code defensively to handle this case.
 
 More authentication stuff goes here TBD
+
+### Action Retries
+
+If you expect that your action might hit the 30 second time limit, consider adding retry support with `context.retry`. You **must** return this in order for your action to retry- it will not do so automatically if it hits the timeout. See a full action example using this [here](https://github.com/clay-run/action-package-apis/blob/master/src/aws_textract_pdf/aws_textract_pdf.js#L81).
+
+A quick reference:
+```js
+  context.retry({
+    message: 'message here'
+  });
+```
