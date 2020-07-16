@@ -225,6 +225,59 @@ inputParameterSchema: [
 ]
 ```
 
+Select options allow you to create a dropdown menu of options for the user to pick from, and passing a value that you define. Here's a simple example example:
+
+```js
+inputParameterSchema: [
+  {
+    name: "mediaType",
+    displayName: "Media Type",
+    type: "select",
+    options: [ 		// These options are an array, with a value and a display name. The value gets passed to the action, accessible via actionInputs.mySelectType.
+      {
+         value: "book",
+	 displayName: "Book"
+      },
+      {
+      	value: "tv",
+	displayName: "Television"
+      },
+      {
+      	value: "movie",
+	displayName: "Movie"
+      },
+      {
+        value: "mp3",
+	displayName: "Audio"
+      }
+    ]
+  }
+]
+```
+
+You can also generate the options to pick from dynamically. This requires that you declare it as a dynamic option, and provide an `optionsFunction`. Here's an example!
+
+```js
+inputParameterSchema: {
+  {
+    name: "randomNums",
+    displayName: "",
+    type: "select",
+    dynamicOptions: true, 	// Required to use dynamic selects
+    optionsFunction: async function(optionInputs, optionContext){
+    	let arrayOfValues = []	// You must return an array that takes the same form - items have both a value and a displayName. Only the value will be passed.
+	for(int i = 1, i <= 3, i++){
+	  var randomNum = Math.floor(Math.random() * 100)
+	  arrayOfValues.push({
+	    value: randomNum,
+	    displayName: 'Random Number ' + i
+	  })
+	}
+	return arrayOfValues; // People can pick between "Random Number 1, Random Number 2, Random Number 3", each with an associated value assigned with a random number beteen 0-99, not visible to the user.
+    }
+  }
+}
+```
 
 ### Step 4: Write Your Action
 The Action definition points to a function that carries out the tasks of your action.
