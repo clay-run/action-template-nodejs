@@ -462,11 +462,49 @@ Time window rules define the maximum number of requests in a time window.
   }
 ```
 
+Changing duration for time window rules across action definition deployments may result in unexpected behavior if two versions are running at the same time.
+In particular, the smallest duration may be used under certain circumstances.
+
 ### Authentication Overview
 
-Authentication tokens are passed in on the `context.auth` object. If no authentication has taken place, the `context.auth` object does not exist. Code defensively to handle this case.
+For actions requiring authentication tokens, an authentication account can be created or selected at the time of the action column creation.
+In order to prompt the user for an authentication account, the action definition must contain authentication information in the action definition.
+Time window rules define the maximum number of requests in a time window.
+```js
+  // This says: an authentication account for Slack using OAuth must be provided to the action
 
-More authentication stuff goes here TBD
+  authentications: [
+    {
+      provider: 'slack_oauth'
+    }
+  ],
+```
+
+Valid authentication providers are:
+- provider: 'api_key' - a freeform entry that allows users to enter an API key
+- provider: 'username_password' - a freeform entry that allows users to enter a username and a password
+- provider: 'custom_inputs' - a freeform entry that allows any number of fields to be defined by the action definition and prompted to the user
+- provider: 'github_oauth' - a Github OAuth account
+- provider: 'slack_oauth' - a Slack OAuth account
+- provider: 'nylas_oauth' - a Nylas OAuth account
+- provider: 'hubspot_oauth' - a Hubspot OAuth account
+- provider: 'shopify_oauth' - a Shopify OAuth account
+
+Note that generic provider types such as 'api_key' support additional fields to distinguish accounts by domain. Action definitions can specify the domain:
+```js
+  // This says: an authentication account of type API key associated with the Clearbit domain must be provided to the action
+
+  authentications: [
+    {
+      provider: 'api_key',
+      provider_inputs: {
+        domain: 'clearbit'
+      }
+    }
+  ],
+```
+
+Authentication tokens are passed in on the `context.auth` object. If no authentication has taken place, the `context.auth` object does not exist. Code defensively to handle this case.
 
 ### Action Retries
 
