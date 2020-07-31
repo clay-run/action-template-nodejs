@@ -292,10 +292,13 @@ The `context` object exposes useful methods to structure your action.
 - `context.success({ data, textPreview, imagePreview, successType: context.status.SUCCESS_TYPE })` generates a return object indicating a success for the action function
 - `context.fail({ message, errorType: context.status.ERROR_TYPE })` generates a return object indicating a failure of the action function
 
-#### Handling Errors
-The `context` object provides structured errors. This ensures that the Clay UI shows a proper error message for the users of your action.
+#### Handling Return Statuses
+The `context` object provides structured statuses. This ensures that the Clay UI shows a proper message for the users of your action.
 
-> Providing structured errors is extremely important to communicate with your Action's user. Without structured errors, the user won't know what went wrong.
+> Providing structured statuses is extremely important to communicate with your Action's user. 
+>
+> Sending a success status allows you to suggest more information about your action return data.
+> Sending an error status, can indicate to the user exactly what went wrong. 
 
 `context.status` contains status codes for the following status types:
 
