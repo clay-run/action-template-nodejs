@@ -318,6 +318,9 @@ context.status.PENDING
 context.status.RUNNING
 ```
 
+#### Adding New Statuses
+If you would like to add a new status please refer to the documentation in [clay-action-client](https://github.com/clay-run/clay-action-client/blob/master/README.md).
+
 ### Step 5: Test your Action
 Testing is critical to your Action. Untested Actions are likely to fail. Always test your Action.
 
