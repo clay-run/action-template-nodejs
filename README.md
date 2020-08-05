@@ -304,7 +304,6 @@ The `context` object provides structured statuses. This ensures that the Clay UI
 
 ```
 context.status.SUCCESS_NO_DATA
-context.status.RETRY
 context.status.ERROR_MISSING_INPUT
 context.status.ERROR_INVALID_INPUT
 context.status.ERROR_MISSING_OUTPUT_DATA
@@ -314,8 +313,7 @@ context.status.ERROR_TIMEOUT
 context.status.ERROR_INVALID_CREDENTIALS
 context.status.SUCCESS
 context.status.ERROR
-context.status.PENDING
-context.status.RUNNING
+context.status.RETRY
 ```
 
 #### Adding New Statuses
@@ -525,7 +523,6 @@ If you expect that your action might hit the 30 second time limit, consider addi
 A quick reference:
 ```js
   return context.retry({
-    message: 'message here',
-    retryType: context.status.RETRY
+    message: 'message here'
   });
 ```
