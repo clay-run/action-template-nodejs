@@ -289,17 +289,21 @@ The action function always uses two parameters: the `inputs` you defined in your
 The `context` object exposes useful methods to structure your action.
 
 - `context.log(...logs)` allows the user to log messages and make them available on Clay
-- `context.success({ data, textPreview, imagePreview })` generates a return object indicating a success for the action function
+- `context.success({ data, textPreview, imagePreview, successType: context.status.SUCCESS_TYPE })` generates a return object indicating a success for the action function
 - `context.fail({ message, errorType: context.status.ERROR_TYPE })` generates a return object indicating a failure of the action function
 
-#### Handling Errors
-The `context` object provides structured errors. This ensures that the Clay UI shows a proper error message for the users of your action.
+#### Handling Return Statuses
+The `context` object provides structured statuses. This ensures that the Clay UI shows a proper message for the users of your action.
 
-> Providing structured errors is extremely important to communicate with your Action's user. Without structured errors, the user won't know what went wrong.
+> Providing structured statuses is extremely important to communicate with your Action's user. 
+>
+> Sending a success status allows you to suggest more information about your action return data.
+> Sending an error status, can indicate to the user exactly what went wrong. 
 
-`context.status` contains status codes for most error types:
+`context.status` contains status codes for the following status types:
 
 ```
+context.status.SUCCESS_NO_DATA
 context.status.ERROR_MISSING_INPUT
 context.status.ERROR_INVALID_INPUT
 context.status.ERROR_MISSING_OUTPUT_DATA
@@ -307,7 +311,12 @@ context.status.ERROR_INVALID_OUTPUT_DATA
 context.status.ERROR_BAD_REQUEST
 context.status.ERROR_TIMEOUT
 context.status.ERROR_INVALID_CREDENTIALS
+context.status.SUCCESS
+context.status.ERROR
 ```
+
+#### Adding New Statuses
+If you would like to add a new status please refer to the documentation in [clay-action-client](https://github.com/clay-run/clay-action-client/blob/master/README.md).
 
 ### Step 5: Test your Action
 Testing is critical to your Action. Untested Actions are likely to fail. Always test your Action.
@@ -508,11 +517,11 @@ Authentication tokens are passed in on the `context.auth` object. If no authenti
 
 ### Action Retries
 
-If you expect that your action might hit the 30 second time limit, consider adding retry support with `context.retry`. You **must** return this in order for your action to retry- it will not do so automatically if it hits the timeout. See a full action example using this [here](https://github.com/clay-run/action-package-apis/blob/master/src/aws_textract_pdf/aws_textract_pdf.js#L81).
+If you expect that your action might hit the 30 second time limit, consider adding retry support with `context.retry`. You **must** return this in order for your action to retry- it will not do so automatically if it hits the timeout. See a full action example using this [here](https://github.com/clay-run/action-package-apis/blob/master/src/aws_textract_pdf/aws_textract_pdf.js#L71-L74).
 
 A quick reference:
 ```js
-  context.retry({
+  return context.retry({
     message: 'message here'
   });
 ```
