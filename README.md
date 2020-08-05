@@ -313,7 +313,6 @@ context.status.ERROR_TIMEOUT
 context.status.ERROR_INVALID_CREDENTIALS
 context.status.SUCCESS
 context.status.ERROR
-context.status.RETRY
 ```
 
 #### Adding New Statuses
