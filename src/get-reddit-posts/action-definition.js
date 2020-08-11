@@ -21,7 +21,7 @@ module.exports = {
       description: "The number of posts to fetch"
     }
   ],
-  outputParameterSchema: require('./output_parameter_schema.js'),
+  outputParameterSchema: require('./output-schema.js'),
   inputSample: require('./test-inputs').goodSample,
-  outputSample: require('./output_sample.js'),  
+  outputSample: require('./output-sample.js'),  
 }

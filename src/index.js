@@ -3,7 +3,7 @@
     Add an Action by importing it's action-definition.js and adding it to the actionDefinitions array
 */
 
-const getTopRedditPosts = require("./actions/get-reddit-posts/action-definition.js")
+const getTopRedditPosts = require("./get-reddit-posts/action-definition.js")
 
 module.exports =  {
   name: "Reddit-Action-Package", 
