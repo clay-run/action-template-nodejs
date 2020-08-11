@@ -410,6 +410,19 @@ Deployment only works if you're logged into Clay from your command line. If you 
 yarn run login
 ```
 
+If you're not ready to go live with your action, but want to test it locally or in staging, then login to either environment before deploying with the corresponding environment tag.
+
+```
+yarn run login:local
+yarn run login:staging
+```
+```
+yarn run deploy:local
+yarn run deploy:staging
+```
+
+Note: the staging environment lives here: https://dev--clay-web-app.netlify.app/
+
 ---
 
 ## Rate Limiting, Authentication, and Other Advanced Features
