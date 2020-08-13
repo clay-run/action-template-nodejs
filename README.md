@@ -279,6 +279,31 @@ inputParameterSchema: {
 }
 ```
 
+Input Fields can also be generated dynamically using the `dynamicFields` type.
+
+```js
+inputParameterSchema: [
+  {
+    name: "myDynamicFieldsType",
+    type: "dynamicFields",
+    optional: false,
+    dynamicFieldsFunction: async function(optionInputs, optionContext) {
+      let ret = [];
+      const columnsNames = optionInputs.columns.split(",").map(column => column.trim());
+      columnsNames.forEach(column => {
+        ret.push({
+          name: column,
+          type: "text",
+          optional: false,
+          description: "The corresponding mapping for column " + column,
+        })
+      })
+      return ret;
+    }
+  }
+]
+```
+
 ### Step 4: Write Your Action
 The Action definition points to a function that carries out the tasks of your action.
 
@@ -505,7 +530,32 @@ Time window rules define the maximum number of requests in a time window.
 Valid authentication providers are:
 - provider: 'api_key' - a freeform entry that allows users to enter an API key
 - provider: 'username_password' - a freeform entry that allows users to enter a username and a password
-- provider: 'custom_inputs' - a freeform entry that allows any number of fields to be defined by the action definition and prompted to the user
+- provider: 'custom_inputs' - a freeform entry that allows any number of fields to be defined by the action definition and prompted to the user, as follows:
+```js
+authentications: [
+  {
+    provider: "custom_inputs",
+    provider_inputs: {
+      domain: "PostgreSQL",
+      custom_inputs: [
+        {
+          name: "database",
+          type: "text",
+          displayName: "Database Name",
+          description: "Name of the database",
+        },
+        {
+          name: "table",
+          type: "text",
+          displayName: "Table Name",
+          description: "Name of the table",
+        },
+      ]
+    }
+  }
+]
+```
+- provider: 'twitter' - a Twitter auth account
 - provider: 'github_oauth' - a Github OAuth account
 - provider: 'slack_oauth' - a Slack OAuth account
 - provider: 'nylas_oauth' - a Nylas OAuth account
