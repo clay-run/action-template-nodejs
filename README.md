@@ -315,7 +315,7 @@ The `context` object exposes useful methods to structure your action.
 
 - `context.log(...logs)` allows the user to log messages and make them available on Clay
 - `context.success({ data, textPreview, imagePreview, successType: context.status.SUCCESS_TYPE })` generates a return object indicating a success for the action function
-- `context.fail({ message, errorType: context.status.ERROR_TYPE })` generates a return object indicating a failure of the action function
+- `context.fail({ message, errorType: context.status.ERROR_TYPE, textPreview, imagePreview })` generates a return object indicating a failure of the action function
 
 #### Handling Return Statuses
 The `context` object provides structured statuses. This ensures that the Clay UI shows a proper message for the users of your action.
