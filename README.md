@@ -317,6 +317,9 @@ The `context` object exposes useful methods to structure your action.
 - `context.success({ data, textPreview, imagePreview, successType: context.status.SUCCESS_TYPE })` generates a return object indicating a success for the action function
 - `context.fail({ message, errorType: context.status.ERROR_TYPE, textPreview, imagePreview })` generates a return object indicating a failure of the action function
 
+Note:
+When returning `context.success`, if no `imagePreview` is provided, there is a fallback to the action `iconUri`. If you would like to override this, set `imagePreview` to `false`.
+
 #### Handling Return Statuses
 The `context` object provides structured statuses. This ensures that the Clay UI shows a proper message for the users of your action.
 
