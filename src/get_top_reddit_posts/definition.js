@@ -40,6 +40,17 @@ const getTopRedditPostsActionDefinition = {
     numberOfPosts: 10
   },
   outputSample: require('./output_sample.js'),
+  //viewOptions: { // optional - customize the way that action views are rendered in Clay
+  //  button: { // optional - customize button when "button press" run setting is applied
+  //    text: 'Launch rockets!', // text to render in action cell button
+  //  },
+  //  cards: { // optional - customize the "cards" view of action output data
+  //    header: { // set a custom header for card
+  //      title: '{{ title }} by @{{ author }}', // header text (uses Lodash template interpolation)
+  //      image: '' // header image URL (also uses Lodash template interpolation)
+  //    }
+  //  }
+  //},
   //pricing: { // INTERNAL ONLY - pricing rules for the action function
   //  requiresPayment: true,
   //  chargedById: "a1b2c3d4",

@@ -591,3 +591,43 @@ A quick reference:
     message: 'message here'
   });
 ```
+
+### View Options
+
+Certain UI features for your action can be customized with the `viewOptions` part of the action definition.
+
+- Customizing the "Cards" view of your output data
+- Customizing the button shown in a cell when users select the "On button press" run setting
+
+#### Customizing Cards
+
+As of August 2020, you can customize what appears in the header of each card in the "Cards" through the `viewOptions.cards` object:
+
+```js
+viewOptions: {
+  cards: {
+    header: {
+      title: 'My custom title: {{ path.to.some.attribute }}'
+      image: '{{ path.to.image.url }}'
+    }
+  }
+}
+```
+
+Notice that you can use interpolation within the curly braces `{{ }}`, thanks to Lodash's [`_.template`](https://lodash.com/docs/4.17.15#template) function.
+
+When your output data is an array of objects, the interpolation is applied in the context of each object. When your output data is a top-level object, then the interpolation is applied to that top-level object itself.
+
+#### Customizing Buttons
+
+As of August 2020, you can customize the text shown in the button of a cell in an action column when users choose to run actions "on button press". Example:
+
+```js
+viewOptions: {
+  button: {
+    text: 'Launch rockets!',
+  },
+}
+```
+
+When the button is rendered, it will use this text along with the icon specified by `iconUri` (if it exists).
