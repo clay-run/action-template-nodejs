@@ -319,6 +319,7 @@ The `context` object exposes useful methods to structure your action.
 - `context.fail({ message, errorType: context.status.ERROR_TYPE, textPreview, imagePreview })` generates a return object indicating a failure of the action function
 
 The `message` field corresponds to a detailed description provided within the `TableSideBar/StatusIndicatorCard ` component that slides out from the right hand side upon a cell preview click.
+
 The `textPreview` field corresponds to a short text preview within a cell preview bubble.
 
 Note:
