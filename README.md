@@ -314,8 +314,12 @@ The action function always uses two parameters: the `inputs` you defined in your
 The `context` object exposes useful methods to structure your action.
 
 - `context.log(...logs)` allows the user to log messages and make them available on Clay
-- `context.success({ data, textPreview, imagePreview, successType: context.status.SUCCESS_TYPE })` generates a return object indicating a success for the action function
+- `context.success({ message, data, textPreview, imagePreview, successType: context.status.SUCCESS_TYPE })` generates a return object indicating a success for the action function
+
 - `context.fail({ message, errorType: context.status.ERROR_TYPE, textPreview, imagePreview })` generates a return object indicating a failure of the action function
+
+The `message` field corresponds to a detailed description provided within the `TableSideBar/StatusIndicatorCard ` component that slides out from the right hand side upon a cell preview click.
+The `textPreview` field corresponds to a short text preview within a cell preview bubble.
 
 Note:
 When returning `context.success`, if no `imagePreview` is provided, there is a fallback to the action `iconUri`. If you would like to override this, set `imagePreview` to `false`.
